@@ -1,109 +1,107 @@
-System Architecture Overview
+# design.md
 
-LumosRoad follows a mobile-first, cloud-backed architecture optimized for scalability and low latency.
+## System Architecture Overview
 
-High-Level Architecture
+LumosRoad follows a **mobile-first, cloud-backed architecture** optimized for scalability and low latency.
 
-Client (Mobile App)
+---
 
-Android-first (Flutter / React Native)
+## High-Level Architecture
 
-Offline caching for maps & routes
+**Client (Mobile App)**
 
-Backend (AWS)
+* Android-first (Flutter / React Native)
+* Offline caching for maps & routes
 
-API Gateway
+**Backend (AWS)**
 
-Lambda-based microservices
+* API Gateway
+* Lambda-based microservices
+* DynamoDB for user & route metadata
 
-DynamoDB for user & route metadata
+**AI & Data Layer**
 
-AI & Data Layer
+* Route Risk Scoring Engine
+* Anomaly Detection Model
+* Historical + real-time data ingestion
 
-Route Risk Scoring Engine
+---
 
-Anomaly Detection Model
+## Data Sources
 
-Historical + real-time data ingestion
+* OpenStreetMap
+* Government accident & road data
+* Crowd-sourced user feedback
+* Time-based environmental signals
 
-Data Sources
+---
 
-OpenStreetMap
+## AI Components
 
-Government accident & road data
+### 1. Route Safety Scoring Model
 
-Crowd-sourced user feedback
+**Inputs**
 
-Time-based environmental signals
+* Road type
+* Lighting availability
+* Accident frequency
+* Time of travel
 
-AI Components
-1. Route Safety Scoring Model
+**Output**
 
-Inputs
+* Normalized Safety Score (0–100)
 
-Road type
+---
 
-Lighting availability
+### 2. Anomaly Detection (Guardian Mode)
 
-Accident frequency
+**Approach**
 
-Time of travel
+* Time-series behavior modeling
+* Rule-based + ML hybrid
 
-Output
+**Triggers**
 
-Normalized Safety Score (0–100)
+* Unplanned long halt
+* Sudden direction change
+* Missed check-in
 
-2. Anomaly Detection (Guardian Mode)
+---
 
-Approach
+## SOS Flow Design
 
-Time-series behavior modeling
+1. User taps SOS
+2. Backend fetches live location
+3. Alerts emergency contacts
+4. Continuous tracking until resolved
 
-Rule-based + ML hybrid
+---
 
-Triggers
+## Privacy & Security Design
 
-Unplanned long halt
+* Location data encrypted at rest and in transit
+* Guardian Mode data auto-deleted after session
+* User-controlled data sharing
 
-Sudden direction change
+---
 
-Missed check-in
+## Scalability Plan
 
-SOS Flow Design
+* Serverless infrastructure
+* Region-based data partitioning
+* Offline-first UX for rural areas
 
-User taps SOS
+---
 
-Backend fetches live location
+## Future Enhancements
 
-Alerts emergency contacts
+* Integration with government emergency systems
+* Voice-first navigation in regional languages
+* Community-driven road safety feedback
 
-Continuous tracking until resolved
+---
 
-Privacy & Security Design
+## Design Philosophy
 
-Location data encrypted at rest and in transit
-
-Guardian Mode data auto-deleted after session
-
-User-controlled data sharing
-
-Scalability Plan
-
-Serverless infrastructure
-
-Region-based data partitioning
-
-Offline-first UX for rural areas
-
-Future Enhancements
-
-Integration with government emergency systems
-
-Voice-first navigation in regional languages
-
-Community-driven road safety feedback
-
-Design Philosophy
-
-Safety > Speed > Convenience
+**Safety > Speed > Convenience**
 Built for Bharat, grounded in real-world road conditions, and designed to protect first.
